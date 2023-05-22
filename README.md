@@ -17,7 +17,7 @@ python PANDA.py
 
 ## Generate Dataset by Yourself
 We also provide the flow to generate dataset in this project, so you can easily use PANDA on your own data. This can be divided into two parts:
-1) Generate Feature: Use gem5 to generate related events. What's more, to help users to compare PANDA to other works, we also provide the flow to run McPAT.
+1) Generate Feature: Use gem5 to generate related events. What's more, to help users to compare PANDA to other works, we also provide the flow to run McPAT although PANDA doesn't need the output of McPAT.
 ```
 cd arch_sim_flow/
 python 1_run_gem5.py
