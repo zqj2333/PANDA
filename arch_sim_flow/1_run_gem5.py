@@ -42,8 +42,7 @@ class gem5_runner:
         ]
 
     def run_gem5(self):
-        #for i in range(len(self.boom_core_config_table)):
-        for i in range(2,3):
+        for i in range(len(self.boom_core_config_table)):
             config = self.boom_core_config_table[i]
             isu_params = [
             # IQT_MEM.numEntries IQT_MEM.dispatchWidth

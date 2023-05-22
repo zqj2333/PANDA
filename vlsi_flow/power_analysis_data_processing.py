@@ -64,6 +64,8 @@ class eda_process:
             config_dataset = []
             for j in range(1, len(self.benchmark)):
                 workload = self.benchmark[j]
+                
+                
                 #num_of_cycle
                 simulation_result = "/home/coguest/chipyard/vlsi/output/chipyard.TestHarness.BoomConfig{}/{}.fsdb_log".format(i, workload)
                 print(simulation_result)
@@ -73,12 +75,14 @@ class eda_process:
                 value_pattern = '\d+'
                 num_of_cycle = int(re.findall(value_pattern,text[0])[0])
                 
+                
                 #slack
                 qor_result = "/home/coguest/EDAFlowBOOMSRAM/dc/boom{}tsmc/report/qor.rpt".format(i)
                 slack_pattern = 'Critical Path Slack:.*\n'
                 slack_text = open(qor_result).read()
                 text = re.findall(slack_pattern,slack_text)
                 slack = float(text[0].split()[3])
+                
                 
                 #area
                 area_result = "/home/coguest/EDAFlowBOOMSRAM/dc/boom{}tsmc/report/area.rpt".format(i)
@@ -131,25 +135,22 @@ class eda_process:
                 text = re.findall(FU_power_pattern,power_text)
                 for itr in range(len(text)):
                     FU_power = FU_power + float(text[itr].split()[-2])
-                #print(text)
-                    
-                    
-                
-                #area_values = [area_list[0],area_list[1],area_list[2],area_list[3]-area_list[2],area_list[4]+area_list[5],area_list[6],area_list[7],area_list[8]+area_list[9],area_list[10],area_list[11]-area_list[1]-area_list[3]-area_list[6],area_list[12]-area_list[7],area_list[13]+area_list[14]]
-                #power_values = [power_list[0],power_list[1],power_list[2],power_list[3]-power_list[2],power_list[4]+power_list[5],power_list[6],power_list[7],power_list[8]+power_list[9],power_list[10],power_list[11]-power_list[1]-power_list[3]-power_list[6],power_list[12]-power_list[7],power_list[13]+power_list[14]]
+
+
+
                 area_values = [area_list[0],area_list[1],area_list[3],area_list[4]+area_list[5],area_list[6],area_list[7],area_list[8]+area_list[9],area_list[10],area_list[11]-area_list[1]-area_list[3]-area_list[6],area_list[12]-area_list[7],FU_area,area_list[15]+area_list[16]+area_list[17]]
                 power_values = [power_list[0],power_list[1],power_list[3],power_list[4]+power_list[5],power_list[6],power_list[7],power_list[8]+power_list[9],power_list[10],power_list[11]-power_list[1]-power_list[3]-power_list[6],power_list[12]-power_list[7],FU_power,power_list[15]+power_list[16]+power_list[17]]
-                #print(len(area_values))
-                #print(len(power_values))
+
                 
                 single_data = [num_of_cycle,slack,area,leakage,dynamic,total]
                 single_data = single_data + area_values + power_values
                 config_dataset.append(single_data)
             eda_dataset.append(config_dataset)
         data_array = np.array(eda_dataset)
-        print(data_array.shape)
-        print(data_array[0][0])
-        np.save('label_set_5_7.npy', data_array)
+        #print(data_array.shape)
+        #print(data_array[0][0])
+        np.save('../example_data/label_set.npy', data_array)
+                
                 
 processing = eda_process()
 processing.process_eda_data()
