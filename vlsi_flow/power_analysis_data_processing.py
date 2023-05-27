@@ -67,7 +67,7 @@ class eda_process:
                 
                 
                 #num_of_cycle
-                simulation_result = "/home/coguest/chipyard/vlsi/output/chipyard.TestHarness.BoomConfig{}/{}.fsdb_log".format(i, workload)
+                simulation_result = "path_to_chipyard/vlsi/output/chipyard.TestHarness.BoomConfig{}/{}.fsdb_log".format(i, workload)
                 print(simulation_result)
                 mcycle_pattern = 'mcycle = .*\n'
                 simulation_text = open(simulation_result).read()
@@ -77,7 +77,7 @@ class eda_process:
                 
                 
                 #slack
-                qor_result = "/home/coguest/EDAFlowBOOMSRAM/dc/boom{}tsmc/report/qor.rpt".format(i)
+                qor_result = "path_to_design_compiler_result/boom{}tsmc/report/qor.rpt".format(i)
                 slack_pattern = 'Critical Path Slack:.*\n'
                 slack_text = open(qor_result).read()
                 text = re.findall(slack_pattern,slack_text)
@@ -85,7 +85,7 @@ class eda_process:
                 
                 
                 #area
-                area_result = "/home/coguest/EDAFlowBOOMSRAM/dc/boom{}tsmc/report/area.rpt".format(i)
+                area_result = "path_to_design_compiler_result/boom{}tsmc/report/area.rpt".format(i)
                 area_pattern = 'Total cell area:.*\n'
                 area_text = open(area_result).read()
                 text = re.findall(area_pattern,area_text)
@@ -101,7 +101,7 @@ class eda_process:
 
                             
                 #power
-                power_result = "/home/coguest/EDAFlowBOOMSRAM/ptpx/averaged/power_tsmc_boom{}tsmc_{}.rpt".format(i,workload)
+                power_result = "path_to_ptpx_result/power_tsmc_boom{}tsmc_{}.rpt".format(i,workload)
                 power_text = open(power_result).read()
                 splited_text = power_text.splitlines()
                 text = splited_text[13]
