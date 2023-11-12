@@ -14,18 +14,3 @@ We prepared a example dataset in "example_data", with feature_set and label_set.
 cd power_model
 python PANDA.py
 ```
-
-## Generate Dataset by Yourself
-We also provide the flow to generate dataset in this project, so you can easily use PANDA on your own data. This can be divided into two parts:
-1) Generate Feature: Use gem5 to generate related events. What's more, to help users to compare PANDA to other works, we also provide the flow to run McPAT although PANDA doesn't need the output of McPAT. (The architecture level simulation flow is coming soon!)
-```
-cd arch_sim_flow/
-python 1_run_gem5.py
-python 2_run_mcpat.py
-python 3_microarchitecture_data_processing.py
-```
-2) Generate Label: Use VLSI flow to generate ground truth.
-```
-cd vlsi_flow/
-python power_analysis_data_processing.py
-```
